@@ -36,6 +36,21 @@ Ruma 是一个基于 [Rurima](https://github.com/Moe-hacker/rurima) 的轻量级
 
 ### 安装步骤
 
+#### 方式一: 一键安装 (推荐)
+
+```bash
+# 下载并运行安装脚本
+curl -sL https://raw.githubusercontent.com/xiumuzidiao0/ruma/master/install.sh | sudo bash
+```
+
+或下载项目后本地运行:
+```bash
+chmod +x install.sh
+sudo ./install.sh
+```
+
+#### 方式二: 手动安装
+
 1. 安装 Rurima: 请参考 Rurima 项目 进行安装。
 2. 安装 Ruma CLI:
  将 ruma.sh 复制到系统路径并赋予执行权限：
