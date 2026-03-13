@@ -57,22 +57,33 @@ Ruma 是一个基于 [Rurima](https://github.com/Moe-hacker/rurima) 的轻量级
 
 ```ini
 [Unit]
-Description=Ruma Web UI
+Description=Ruma Web Service
 After=network.target
 
 [Service]
 Type=simple
 User=root
 WorkingDirectory=/root
-ExecStart=/root/rumaweb_env/bin/python ruma_web.py
+ExecStart=/root/start_ruma_web.sh
 Restart=always
+Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
 ```
 
+创建启动脚本 `/root/start_ruma_web.sh`:
+
+```bash
+#!/bin/bash
+cd /root
+source /root/rumaweb_env/bin/activate
+exec python ruma_web.py
+```
+
 然后启用服务：
 ```bash
+chmod +x /root/start_ruma_web.sh
 systemctl daemon-reload
 systemctl enable rumaweb
 systemctl start rumaweb
