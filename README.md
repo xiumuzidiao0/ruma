@@ -44,12 +44,39 @@ Ruma 是一个基于 [Rurima](https://github.com/Moe-hacker/rurima) 的轻量级
  
 3. 安装 Web UI:
  安装 Python 依赖：
- pip3 install flask
+ pip3 install flask psutil
  
  启动 Web 服务：
  python3 ruma_web.py
  
  *(建议配置为 Systemd 服务以实现开机自启)*
+
+### Systemd 服务配置 (可选)
+
+创建 `/etc/systemd/system/rumaweb.service`:
+
+```ini
+[Unit]
+Description=Ruma Web UI
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root
+ExecStart=/root/rumaweb_env/bin/python ruma_web.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+然后启用服务：
+```bash
+systemctl daemon-reload
+systemctl enable rumaweb
+systemctl start rumaweb
+```
 
 ## 📖 CLI 使用指南 (ruma)
 
